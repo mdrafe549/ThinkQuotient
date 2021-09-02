@@ -1,24 +1,34 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SoloLearn
+namespace Task2_Q5
 {
-    class Task2_Q5
+    class Program
     {
         static void Main(string[] args)
         {
-            SortedList<int , string> sl = new SortedList<int , string>();
-
-            sl.Add(1200,"CSharp");
-            sl.Add(1400,"Python");
-            sl.Add(456,"Java");
-            sl.Add(1900,"JavaScript");
-            sl.Add(1500,"SQL");
-            
-            Console.WriteLine("Sorted List: ");
-            foreach (int s in sl.Keys)
-                Console.WriteLine(s + ": " + sl[s]);  
-                
+            Console.WriteLine("Enter number of entries: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter a number of Devlopers and Programming Languages");
+            List<Tuple<int, string>> list = new List<Tuple<int, string>>(n);
+            int j = 0;
+            while (j<n)
+            {
+                string line = Console.ReadLine();
+                string[] temp = line.Split(' ');
+                list.Add(new Tuple<int, string>(Convert.ToInt32(temp[0]), temp[1]));
+                j++;
+            }
+            list.Sort();
+            j = 1;
+            for(int i=n-1; i>=0; i--){
+                Console.WriteLine("Rank "+ j + " " + list[i].Item2);
+                j++;
+            }
+            Console.Read();
         }
     }
-}    
+}
